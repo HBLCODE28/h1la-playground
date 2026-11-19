@@ -1,0 +1,11 @@
+# Exclude project-level Codex artefacts
+_CODEX/
+node_modules/
+dist/
+build/
+*.log
+*.tmp
+*.cache
+__pycache__/
+.idea/
+.vscode/
