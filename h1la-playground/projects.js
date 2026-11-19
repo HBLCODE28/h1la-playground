@@ -12,7 +12,7 @@ window.PROJECTS = [
     subtitle: "סל שיתופי",
     description: "מקום מסודר לכל הרשימות סופר שלכם עם המשפחה/שותפים",
     technologies: ["PHP","SQL"],
-    github: "https://github.com/HBLCODE28/MyOwnProjects/tree/main/SharedCart",
+    github: "https://github.com/HBLCODE28/SharedCart",
     website: "https://sharedcart.h1la.com/",
     color: "#D88180",
     icon: "shopping-cart"
@@ -24,7 +24,7 @@ window.PROJECTS = [
     description: "מערכת המלצות מוזיקה אישית שפיתחתי, שלומדת את הטעם המוזיקלי של המשתמש בעזרת YAMNet ולמידת העברה - ומנבאת אילו שירים חדשים הוא או היא יאהבו, גם ללא היסטוריית האזנה. במבחן עיוור על שירים חדשים המודל הגיע ל-93% דיוק.",
     technologies: ["Python", "TensorFlow", "YAMNet", "Machine Learning"],
     research: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6168227",
-    github:"https://github.com/HBLCODE28/MyOwnProjects/tree/main/school/AIProject",
+    github:"https://github.com/HBLCODE28/HighSchool/tree/main/AIProject",
     color: "#CAD182",
     icon: "headphones"
   },
@@ -35,7 +35,7 @@ window.PROJECTS = [
         description: "כמה אתם טובים לתאר את חברכם במילה אחת?",
         technologies: ["PHP", "JS", "CSS"],
         website: "https://taeroti.h1la.com/",
-        github: "https://github.com/HBLCODE28/MyOwnProjects/tree/main/TaerOti",
+        github: "https://github.com/HBLCODE28/TaerOti",
         color: "#A46229",
         icon: "device-gamepad-2"
     }
