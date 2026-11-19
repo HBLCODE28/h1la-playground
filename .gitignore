@@ -1,11 +1,84 @@
-# Exclude project-level Codex artefacts
-_CODEX/
-node_modules/
-dist/
-build/
-*.log
-*.tmp
-*.cache
-__pycache__/
-.idea/
+﻿# Configuration and secrets
+*[cC][oO][nN][fF][iI][gG]*
+*[sS][eE][tT][tT][iI][nN][gG]*
+*[sS][eE][cC][rR][eE][tT]*
+*[cC][rR][eE][dD][eE][nN][tT][iI][aA][lL]*
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+!.env.dist
+.htpasswd
+
+# Visual Studio / VS Code
+.vs/
 .vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+*.VC.db
+*.VC.opendb
+*.rsuser
+*.vspscc
+*.vssscc
+ipch/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.venv/
+venv/
+ENV/
+.pipenv/
+pip-wheel-metadata/
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# PHP
+vendor/
+.phpunit.cache/
+.phpunit.result.cache
+.phpunit-watcher.yml
+.phpactor.yml
+.phpactor.json
+.php-cs-fixer.cache
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.nbconvert.html
+*.nbconvert.pdf
+sample_data/
+
+# Data directories
+[dD][aA][tT][aA]*/
+
+# Temporary and generated files
+*.log
+*.cache
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.cache/
+tmp/
+temp/
