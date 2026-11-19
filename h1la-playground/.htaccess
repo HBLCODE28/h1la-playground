@@ -1,0 +1,41 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # BEGIN private file guards (2026-11-04)
+  # Hidden paths and internal project records; allow only ACME challenge tokens.
+  RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/[A-Za-z0-9_-]+$ [NC]
+  RewriteRule (^|/)(?:\.[^/]*|_CODEX)(?:/|$) - [F,END,NC]
+
+  # Internal documents, configuration, data and logs.
+  RewriteRule "\.(?:md|markdown|env|ini|conf|cnf|ya?ml|toml)$" - [F,END,NC]
+  RewriteRule "\.(?:sql|sqlite3?|db|log)(?:\.(?:gz|bz2|xz|zst|zip|7z))?$" - [F,END,NC]
+
+  # Backups, editor files, server scripts and private keys.
+  RewriteRule "(?:~|\.(?:bak|backup|old|orig|save|tmp|temp|sw[opx]))$" - [F,END,NC]
+  RewriteRule "\.(?:sh|bash|zsh|py|pyc|ps1|bat|cmd|inc|phps)$" - [F,END,NC]
+  RewriteRule "\.(?:key|pem|p12|pfx)$" - [F,END,NC]
+
+  # Dependency manifests, build settings and internal control files.
+  RewriteRule "(?:^|/)(?:composer\.(?:json|lock)|package(?:-lock)?\.json|yarn\.lock|pnpm-lock\.yaml|npm-shrinkwrap\.json|bun\.lockb?)$" - [F,END,NC]
+  RewriteRule "(?:^|/)(?:phpunit\.xml(?:\.dist)?|tsconfig(?:\.[^.]+)?\.json|(?:webpack|vite)\.config\.[cm]?js|Dockerfile(?:\.[^.]+)?|docker-compose\.ya?ml|Makefile)$" - [F,END,NC]
+  RewriteRule "(?:^|/)(?:AGENTS\.md|GEMINI\.md|README(?:\.(?:md|txt))?|CHANGELOG(?:\.(?:md|txt))?|CONTRIBUTING(?:\.(?:md|txt))?|TODO(?:\.(?:md|txt))?)$" - [F,END,NC]
+  # END private file guards
+</IfModule>
+
+# Keep accidentally deployed source, metadata, and backup files private.
+<IfModule mod_authz_core.c>
+  <FilesMatch "(?i)^(?:\.(?:git|svn|hg|bzr)(?:[._-].*)?|\.(?:gitignore|gitattributes|gitmodules|env(?:\..*)?|htpasswd|user\.ini)|(?:composer|package(?:-lock)?|yarn\.lock|pnpm-lock|bun\.lockb|phpunit(?:\.xml(?:\.dist)?)?|docker-compose(?:\.[^.]+)?|webpack(?:\.[^.]+)?|vite(?:\.[^.]+)?|tsconfig(?:\.[^.]+)?)\.(?:json|ya?ml|xml)|.*\.(?:md|markdown|mdown|mkdn|mdwn|sql|sqlite(?:3)?|bak|backup|old|orig|save|sw[op]|tmp|temp|log|ini|conf|dist|map|ya?ml|toml|lock|pem|key|crt|csr|p12|pfx|sh|bash|zsh|ps1|bat|cmd|rb|py|pl|cgi))$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  <FilesMatch "(?i)^(?:\.(?:git|svn|hg|bzr)(?:[._-].*)?|\.(?:gitignore|gitattributes|gitmodules|env(?:\..*)?|htpasswd|user\.ini)|(?:composer|package(?:-lock)?|yarn\.lock|pnpm-lock|bun\.lockb|phpunit(?:\.xml(?:\.dist)?)?|docker-compose(?:\.[^.]+)?|webpack(?:\.[^.]+)?|vite(?:\.[^.]+)?|tsconfig(?:\.[^.]+)?)\.(?:json|ya?ml|xml)|.*\.(?:md|markdown|mdown|mkdn|mdwn|sql|sqlite(?:3)?|bak|backup|old|orig|save|sw[op]|tmp|temp|log|ini|conf|dist|map|ya?ml|toml|lock|pem|key|crt|csr|p12|pfx|sh|bash|zsh|ps1|bat|cmd|rb|py|pl|cgi))$">
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteRule (^|/)\.(?:git|svn|hg|bzr)(?:/|$) - [F,L,NC]
+</IfModule>
